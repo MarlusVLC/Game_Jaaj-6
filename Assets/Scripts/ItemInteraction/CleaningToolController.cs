@@ -11,27 +11,29 @@ public class CleaningToolController : MonoBehaviour
     
     void OnMouseDown()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(
-            gameObject.transform.position).z;
+        // mZCoord = Camera.main.WorldToScreenPoint(
+        //     transform.position).z;
 
         // Store offset = gameobject world pos - mouse world pos
-        mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+        mOffset = transform.position - GetMouseAsWorldPoint(mZCoord);
+    }
+    
+    void OnMouseDrag()
+    {
+        transform.position = GetMouseAsWorldPoint(mZCoord) + mOffset;
     }
 
-    private Vector3 GetMouseAsWorldPoint()
+    private Vector3 GetMouseAsWorldPoint(float zCoord)
     {
         // Pixel coordinates of mouse (x,y)
         Vector3 mousePoint = Input.mousePosition;
 
         // z coordinate of game object on screen
-        mousePoint.z = mZCoord;
+        mousePoint.z = zCoord;
 
         // Convert it to world points
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
-    void OnMouseDrag()
-    {
-        transform.position = GetMouseAsWorldPoint() + mOffset;
-    }
+
 }
