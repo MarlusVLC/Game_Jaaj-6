@@ -24,6 +24,14 @@ public class DragRigidbody : MonoBehaviour
 
 	// to get the starting position of the object
 	private Vector3 startPosition;
+
+	// current position of the object
+	private Vector3 currentPosition;
+
+	// position after applying force
+	public Transform forwardPosition;
+
+	private bool isGoingForward = false;
 	
 	private void Start()
 	{
@@ -32,11 +40,34 @@ public class DragRigidbody : MonoBehaviour
 	
 	private void Update()
 	{
+		if (Input.GetMouseButton(0))
+		{
+			if (handleInput)
+			{
+				// making the object thrust forward when holding the mouse button
+				transform.position = currentPosition;
+			}
+			
+			isGoingForward = true;
+		}
+		else
+		{
+			isGoingForward = false;
+		}
+		
 		if (handleInput)
 		{
 			HandleInput (Input.mousePosition);
 		}
+
+		if (!isGoingForward)
+		{
+			currentPosition.Set(forwardPosition.position.x, forwardPosition.position.y, forwardPosition.position.z + 0.01f);
+		}
+
+		Debug.Log(isGoingForward);
 	}
+	
 
 	void OnMouseDown ()
 	{
@@ -47,14 +78,14 @@ public class DragRigidbody : MonoBehaviour
 			handleInput = true;
 			HandleInputBegin (Input.mousePosition);
 		}
-		else
-		{
-			handleInput = false;
-			HandleInputEnd (Input.mousePosition);
-			this.transform.position = startPosition;
-		}
+	}
+
+	
+	private void OnMouseDrag()
+	{
 	}
 	
+
 	public void HandleInputBegin (Vector3 screenPosition)
 	{
 		var ray = Camera.main.ScreenPointToRay (screenPosition);
