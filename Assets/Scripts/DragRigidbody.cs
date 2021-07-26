@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 /// <summary>
 /// Drag a rigidbody with the mouse using a spring joint.
@@ -6,25 +11,48 @@
 [RequireComponent(typeof(Rigidbody))]
 public class DragRigidbody : MonoBehaviour
 {
-  public float force = 600;
+	public float force = 600;
 	public float damping = 6;
-	
+
 	Transform jointTrans;
 	float dragDepth;
+	
+	// to activate the handleInput method on the Update method. (the original code used OnMouseDrag, but there is no
+	// alternative to check if the mouse is *not* being held down using MonoBehaviour.OnMouse...blalabla
+	// anyway, activating it on the Update method makes it possible to click the object once, and it stays on your cursor
+	private bool handleInput = false;
+
+	// to get the starting position of the object
+	private Vector3 startPosition;
+	
+	private void Start()
+	{
+		startPosition = this.transform.position;
+	}
+	
+	private void Update()
+	{
+		if (handleInput)
+		{
+			HandleInput (Input.mousePosition);
+		}
+	}
 
 	void OnMouseDown ()
 	{
-		HandleInputBegin (Input.mousePosition);
-	}
-	
-	void OnMouseUp ()
-	{
-		HandleInputEnd (Input.mousePosition);
-	}
-	
-	void OnMouseDrag ()
-	{
-		HandleInput (Input.mousePosition);
+		// click on object -> object's position follows cursor
+		// click on object again -> object goes back to it's starting position
+		if (!handleInput)
+		{
+			handleInput = true;
+			HandleInputBegin (Input.mousePosition);
+		}
+		else
+		{
+			handleInput = false;
+			HandleInputEnd (Input.mousePosition);
+			this.transform.position = startPosition;
+		}
 	}
 	
 	public void HandleInputBegin (Vector3 screenPosition)
