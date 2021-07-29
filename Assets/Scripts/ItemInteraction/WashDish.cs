@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-
 public class WashDish : MonoBehaviour
 {
+	[SerializeField] private Transform currentObject;
 	public Transform sink;
     private Vector3 sinkPosition;
     private Vector3 startingPosition;
@@ -15,7 +14,7 @@ public class WashDish : MonoBehaviour
 
     private void Start()
     {
-	    startingPosition.Set(transform.position.x, transform.position.y, transform.position.z);
+	    startingPosition.Set(currentObject.transform.position.x, currentObject.transform.position.y, currentObject.transform.position.z);
         sinkPosition.Set(sink.position.x, sink.position.y, sink.position.z);
     }
 
@@ -23,11 +22,11 @@ public class WashDish : MonoBehaviour
     {
 	    if (Input.GetKey("space"))
 	    {
-		    transform.position = Vector3.MoveTowards(transform.position, sinkPosition, washForce * Time.deltaTime);
+		    currentObject.transform.position = Vector3.MoveTowards(currentObject.transform.position, sinkPosition, washForce * Time.deltaTime);
 	    }
 	    else
 	    {
-		    transform.position = Vector3.MoveTowards(transform.position, startingPosition, washForce * Time.deltaTime);
+		    currentObject.transform.position = Vector3.MoveTowards(currentObject.transform.position, startingPosition, washForce * Time.deltaTime);
 	    }
     }
 }
