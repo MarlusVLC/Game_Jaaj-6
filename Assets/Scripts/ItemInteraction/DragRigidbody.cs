@@ -38,6 +38,8 @@ public class DragRigidbody : MonoBehaviour
 	{
 		startPosition = this.transform.position;
 
+		//AttachObject(transform.position, transform.GetComponent<Rigidbody>());
+		
 		//forcePositionScript = GameObject.FindGameObjectWithTag("Interactive").GetComponent<DragForcePosition>();
 	}
 	
@@ -83,10 +85,17 @@ public class DragRigidbody : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit)) {
 			if (hit.transform.gameObject.layer == LayerMask.NameToLayer ("Interactive")) {
-				dragDepth = CameraPlane.CameraToPointDepth (Camera.main, hit.point);
-				jointTrans = AttachJoint (hit.rigidbody, hit.point);
+				// dragDepth = CameraPlane.CameraToPointDepth (Camera.main, hit.point);
+				// jointTrans = AttachJoint (hit.rigidbody, hit.point);
+				AttachObject(hit.point, hit.rigidbody);
 			}
 		}
+	}
+
+	private void AttachObject(Vector3 attachPosition, Rigidbody attachRb)
+	{
+		dragDepth = CameraPlane.CameraToPointDepth (Camera.main, attachPosition);
+		jointTrans = AttachJoint (attachRb, attachPosition);
 	}
 	
 	public void HandleInput (Vector3 screenPosition)

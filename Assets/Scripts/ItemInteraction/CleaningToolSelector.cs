@@ -12,6 +12,7 @@ public class CleaningToolSelector : MonoBehaviour
     public Transform mainCleaningTool;
 
     private Transform currentCleaningTool;
+    private DragRigidbody mainDragRigidbody;
 
     enum CleanerType
     {
@@ -26,6 +27,12 @@ public class CleaningToolSelector : MonoBehaviour
     public LayerMask Interactive;
     Ray ray;
     RaycastHit hit;
+
+    private void Start()
+    {
+        mainDragRigidbody = mainCleaningTool.GetComponent<DragRigidbody>();
+        mainDragRigidbody.HandleInputBegin(Input.mousePosition);
+    }
 
     void Update()
     {
