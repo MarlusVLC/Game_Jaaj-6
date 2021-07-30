@@ -11,6 +11,5 @@ public class ObjectController : MonoBehaviour
         // rotating the current object using the horizontal and vertical inputs
         currentObject.transform.Rotate(Input.GetAxisRaw("Vertical") * rotateSpeed * Time.deltaTime, 
             -Input.GetAxisRaw("Horizontal") * rotateSpeed * Time.deltaTime, 0f, Space.World);
-        
     }
 }

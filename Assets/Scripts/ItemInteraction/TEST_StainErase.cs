@@ -1,15 +1,19 @@
 ﻿using System;
+using Code.ScriptableObjects;
+using DefaultNamespace;
 using UnityEngine;
 
 namespace ItemInteraction
 {
-    public class TEST_StainErase : MonoBehaviour
+    public class TEST_StainErase : MonoCache
     {
 
         [Range(0,1)][SerializeField] float erasingFactor = 0.1f;
         
         private Material _decalMAT;
         private Vector4 _alphaRemap;
+        private CleanerType _adequateCleaner;
+        private CleaningTool _interactingCleaningTool;
 
         private void Awake()
         {
@@ -17,14 +21,22 @@ namespace ItemInteraction
             _alphaRemap = _decalMAT.GetVector("_AlphaRemap");
         }
 
+        private void Start()
+        {
+            _adequateCleaner = GetComponentInParent<Dish>().AdequateCleaner;
+        }
+
         private void OnCollisionEnter(Collision other)
         {
-            if (other.transform.CompareTag("CleaningTool"))
+            if (other.transform.TryGetComponent(out _interactingCleaningTool))
             {
-                ReduceAlpha();
-                if (_alphaRemap.y <= -0.9f)
+                if (_interactingCleaningTool.CleanerType == _adequateCleaner)
                 {
-                    Destroy(gameObject);
+                    ReduceAlpha();
+                    if (_alphaRemap.y <= -0.9f)
+                    {
+                        Destroy(gameObject);
+                    }
                 }
             }
         }

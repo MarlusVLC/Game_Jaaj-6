@@ -65,7 +65,7 @@ public class DragRigidbody : MonoBehaviour
 			currentPosition.Set(forwardPosition.position.x, forwardPosition.position.y, forwardPosition.position.z + 0.01f);
 		}
 
-		Debug.Log(isGoingForward);
+		// Debug.Log(isGoingForward);
 	}
 	
 
