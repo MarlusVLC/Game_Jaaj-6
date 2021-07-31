@@ -9,6 +9,9 @@ public class CleaningToolSelector : MonoBehaviour
     [SerializeField] private Transform sponge;
     [SerializeField] private Transform steelSponge;
     [SerializeField] private Transform cloth;
+    [SerializeField] private Transform wand;
+    [SerializeField] private Transform book;
+    [SerializeField] private Transform blowTorch;
     public Transform mainCleaningTool;
 
     private Transform currentCleaningTool;
@@ -19,7 +22,10 @@ public class CleaningToolSelector : MonoBehaviour
         None,
         Sponge,
         SteelSponge,
-        Cloth
+        Cloth,
+        Wand,
+        Book,
+        BlowTorch
     }
 
     private CleanerType _selectedCleanerType;
@@ -43,11 +49,23 @@ public class CleaningToolSelector : MonoBehaviour
             {
                 switch (hit.collider.name)
                 {
-                    case "Sponge": _selectedCleanerType = CleanerType.Sponge;
+                    case "Sponge":
+                        _selectedCleanerType = CleanerType.Sponge;
                         break;
-                    case "Steel Sponge": _selectedCleanerType = CleanerType.SteelSponge;
+                    case "Steel Sponge": 
+                        _selectedCleanerType = CleanerType.SteelSponge;
                         break;
-                    case "Cloth": _selectedCleanerType = CleanerType.Cloth;
+                    case "Cloth": 
+                        _selectedCleanerType = CleanerType.Cloth;
+                        break;
+                    case "Wand": 
+                        _selectedCleanerType = CleanerType.Wand;
+                        break;
+                    case "Book": 
+                        _selectedCleanerType = CleanerType.Book;
+                        break;
+                    case "Blow Torch": 
+                        _selectedCleanerType = CleanerType.BlowTorch;
                         break;
                 }
             }
@@ -74,6 +92,15 @@ public class CleaningToolSelector : MonoBehaviour
                 break;
             case CleanerType.Cloth: 
                 currentCleaningTool = cloth;
+                break;
+            case CleanerType.Wand:
+                currentCleaningTool = wand;
+                break;
+            case CleanerType.Book:
+                currentCleaningTool = book;
+                break;
+            case CleanerType.BlowTorch:
+                currentCleaningTool = blowTorch;
                 break;
         }
 

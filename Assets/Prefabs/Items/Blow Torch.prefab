@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 914952690183289173}
   - component: {fileID: 2471081830815292545}
   m_Layer: 0
-  m_Name: Torch Blower
+  m_Name: Blow Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
