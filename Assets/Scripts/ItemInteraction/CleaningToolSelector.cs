@@ -6,29 +6,29 @@ using UnityEngine.UIElements;
 
 public class CleaningToolSelector : MonoBehaviour
 {
-    [SerializeField] private Transform sponge;
-    [SerializeField] private Transform steelSponge;
-    [SerializeField] private Transform cloth;
-    [SerializeField] private Transform wand;
-    [SerializeField] private Transform book;
-    [SerializeField] private Transform blowTorch;
+    [SerializeField] private Transform placement1;
+    [SerializeField] private Transform placement2;
+    [SerializeField] private Transform placement3;
+    [SerializeField] private Transform placement4;
+    [SerializeField] private Transform placement5;
+    [SerializeField] private Transform placement6;
     public Transform mainCleaningTool;
 
-    private Transform currentCleaningTool;
+    public Transform currentCleaningTool;
+    public Transform currentPlacement;
     private DragRigidbody mainDragRigidbody;
 
-    enum CleanerType
+    enum Placements
     {
         None,
-        Sponge,
-        SteelSponge,
-        Cloth,
-        Wand,
-        Book,
-        BlowTorch
+        Placement1,
+        Placement2,
+        Placement3,
+        Placement4,
+        Placement5,
+        Placement6
     }
-
-    private CleanerType _selectedCleanerType;
+    private Placements _selectedPlacement;
 
     public LayerMask Interactive;
     Ray ray;
@@ -49,23 +49,23 @@ public class CleaningToolSelector : MonoBehaviour
             {
                 switch (hit.collider.name)
                 {
-                    case "Sponge":
-                        _selectedCleanerType = CleanerType.Sponge;
+                    case "Placement 1":
+                        _selectedPlacement = Placements.Placement1;
                         break;
-                    case "Steel Sponge": 
-                        _selectedCleanerType = CleanerType.SteelSponge;
+                    case "Placement 2": 
+                        _selectedPlacement = Placements.Placement2;
                         break;
-                    case "Cloth": 
-                        _selectedCleanerType = CleanerType.Cloth;
+                    case "Placement 3": 
+                        _selectedPlacement = Placements.Placement3;
                         break;
-                    case "Wand": 
-                        _selectedCleanerType = CleanerType.Wand;
+                    case "Placement 4": 
+                        _selectedPlacement = Placements.Placement4;
                         break;
-                    case "Book": 
-                        _selectedCleanerType = CleanerType.Book;
+                    case "Placement 5": 
+                        _selectedPlacement = Placements.Placement5;
                         break;
-                    case "Blow Torch": 
-                        _selectedCleanerType = CleanerType.BlowTorch;
+                    case "Placement 6": 
+                        _selectedPlacement = Placements.Placement6;
                         break;
                 }
             }
@@ -79,36 +79,39 @@ public class CleaningToolSelector : MonoBehaviour
         if (currentCleaningTool)
         {
             currentCleaningTool.gameObject.layer = 0;
-            currentCleaningTool.SetParent(null);
+            currentCleaningTool.SetParent(currentPlacement);
+            currentCleaningTool.localPosition = Vector3.zero;
         }
-        
-        switch (_selectedCleanerType)
+
+        switch (_selectedPlacement)
         {
-            case CleanerType.Sponge: 
-                currentCleaningTool = sponge;
+            case Placements.Placement1:
+                currentPlacement = placement1;
                 break;
-            case CleanerType.SteelSponge: 
-                currentCleaningTool = steelSponge;
+            case Placements.Placement2:
+                currentPlacement = placement2;
                 break;
-            case CleanerType.Cloth: 
-                currentCleaningTool = cloth;
+            case Placements.Placement3:
+                currentPlacement = placement3;
                 break;
-            case CleanerType.Wand:
-                currentCleaningTool = wand;
+            case Placements.Placement4:
+                currentPlacement = placement4;
                 break;
-            case CleanerType.Book:
-                currentCleaningTool = book;
+            case Placements.Placement5:
+                currentPlacement = placement5;
                 break;
-            case CleanerType.BlowTorch:
-                currentCleaningTool = blowTorch;
+            case Placements.Placement6:
+                currentPlacement = placement6;
                 break;
         }
 
-        if (_selectedCleanerType != CleanerType.None)
+        if (_selectedPlacement != null)
         {
+            currentCleaningTool = currentPlacement.gameObject.transform.GetChild(0);
             currentCleaningTool.SetParent(mainCleaningTool);
             currentCleaningTool.localPosition = Vector3.zero;
             currentCleaningTool.gameObject.layer = LayerMask.NameToLayer("Interactive");
         }
+        
     }
 }
