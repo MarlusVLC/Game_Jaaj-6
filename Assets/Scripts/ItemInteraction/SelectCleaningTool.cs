@@ -8,6 +8,9 @@ public class SelectCleaningTool : MonoBehaviour
     [SerializeField] private Transform sponge;
     [SerializeField] private Transform steelSponge;
     [SerializeField] private Transform cloth;
+    [SerializeField] private Transform wand;
+    [SerializeField] private Transform blowTorch;
+    [SerializeField] private Transform book;
     public Transform mainCleaningTool;
 
     enum CleanerType
@@ -15,7 +18,10 @@ public class SelectCleaningTool : MonoBehaviour
         None,
         Sponge,
         SteelSponge,
-        Cloth
+        Cloth,
+        Wand,
+        BlowTorch,
+        Book
     }
 
     private CleanerType _selectedCleanerType;
@@ -37,6 +43,7 @@ public class SelectCleaningTool : MonoBehaviour
             case CleanerType.Cloth: cloth.transform.position = mainCleaningTool.transform.position;
                 cloth.rotation = mainCleaningTool.rotation;
                 break;
+            case CleanerType.Wand: 
         }
         
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
