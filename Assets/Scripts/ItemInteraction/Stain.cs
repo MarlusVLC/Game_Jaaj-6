@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ItemInteraction
 {
-    public class TEST_StainErase : MonoCache
+    public class Stain : MonoCache
     {
 
         [Range(0,1)][SerializeField] float erasingFactor = 0.1f;
@@ -14,6 +14,8 @@ namespace ItemInteraction
         private Vector4 _alphaRemap;
         private CleanerType _adequateCleaner;
         private CleaningTool _interactingCleaningTool;
+        
+        public event Action<Stain> OnErase = delegate(Stain stain) {  };    
 
         private void Awake()
         {
@@ -35,6 +37,7 @@ namespace ItemInteraction
                     ReduceAlpha();
                     if (_alphaRemap.y <= -0.9f)
                     {
+                        OnErase(this);
                         Destroy(gameObject);
                     }
                 }
