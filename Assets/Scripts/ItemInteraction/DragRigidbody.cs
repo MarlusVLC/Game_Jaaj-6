@@ -11,6 +11,11 @@ using Vector3 = UnityEngine.Vector3;
 [RequireComponent(typeof(Rigidbody))]
 public class DragRigidbody : MonoBehaviour
 {
+	private Renderer renderer;
+	[SerializeField] private CleaningToolSelector _cleaningToolSelector;
+	[SerializeField] private CinemachineSwitcher _cinemachineSwitcher;
+	[SerializeField] private GameObject gloves;
+	
 	public float force = 600;
 	public float damping = 6;
 
@@ -22,9 +27,6 @@ public class DragRigidbody : MonoBehaviour
 	// anyway, activating it on the Update method makes it possible to click the object once, and it stays on your cursor
 	private bool handleInput = false;
 
-	// to get the starting position of the object
-	private Vector3 startPosition;
-
 	// position of the object after being applied force
 	private Vector3 afterForcePosition;
 
@@ -33,29 +35,41 @@ public class DragRigidbody : MonoBehaviour
 
 	private bool isGoingForward = false;
 	//DragForcePosition forcePositionScript;
-	
+
 	private void Start()
 	{
-		startPosition = this.transform.position;
-
-		//AttachObject(transform.position, transform.GetComponent<Rigidbody>());
+		renderer = GetComponent<Renderer>();
 		
-		//forcePositionScript = GameObject.FindGameObjectWithTag("Interactive").GetComponent<DragForcePosition>();
 	}
-	
+
 	private void Update()
 	{
 		if (handleInput)
 		{
 			HandleInput (Input.mousePosition);
- 			//forcePositionScript.HandleInput(Input.mousePosition);
+			renderer.enabled = false;
+
+			if (_cinemachineSwitcher._currentCamera == CinemachineSwitcher.CurrentCamera.Gameplay)
+			{
+				Cursor.visible = false;
+				Destroy(gloves);
+			}
+			else
+			{
+				Cursor.visible = true;
+			}
 		}
 		
 		if (handleInput && Input.GetMouseButton(0))
 		{
-			// making the object thrust forward when holding the mouse button
-			transform.position = afterForcePosition;
-			isGoingForward = true;
+			if (_cleaningToolSelector.currentCleaningTool.name == "Sponge" ||
+			    _cleaningToolSelector.currentCleaningTool.name == "Steel Sponge" ||
+			_cleaningToolSelector.currentCleaningTool.name == "Cloth")
+			{
+				// making the object thrust forward when holding the mouse button
+				transform.position = afterForcePosition;
+				isGoingForward = true;	
+			}
 		}
 		else
 		{
@@ -64,7 +78,7 @@ public class DragRigidbody : MonoBehaviour
 
 		if (!isGoingForward)
 		{
-			afterForcePosition.Set(forcePosition.position.x, forcePosition.position.y, forcePosition.position.z);
+			afterForcePosition = forcePosition.position;
 		}
 	}
 

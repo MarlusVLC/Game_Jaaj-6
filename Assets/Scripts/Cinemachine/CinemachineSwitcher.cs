@@ -18,7 +18,7 @@ public class CinemachineSwitcher : MonoBehaviour
     [SerializeField] private GameObject doorPivot;
     [SerializeField] private PlayableDirector director;
     [SerializeField] private CleaningToolSelector cleaningToolSelector;
-    private bool isBlending;
+    public bool isBlending;
 
     public enum CurrentCamera
     {
@@ -67,7 +67,7 @@ public class CinemachineSwitcher : MonoBehaviour
 
     private void ClickPlayButton()
     {
-        if (!isBlending)
+        if (!isBlending && _currentCamera == CurrentCamera.Menu)
         {
             MenuToGameplay();
             director.Play(doorPivotTimeline);
@@ -77,7 +77,7 @@ public class CinemachineSwitcher : MonoBehaviour
 
     private void ClickCreditsButton()
     {
-        if (!isBlending)
+        if (!isBlending && _currentCamera == CurrentCamera.Menu)
         {
             MenuToCredits();
             director.Play(doorPivotTimeline);
@@ -87,7 +87,7 @@ public class CinemachineSwitcher : MonoBehaviour
     
     private void ClickItemsButton()
     {
-        if (!isBlending)
+        if (!isBlending && _currentCamera == CurrentCamera.Menu)
         {
             MenuToItems();
             director.Play(doorPivotTimeline);

@@ -21,7 +21,6 @@ public class CleaningToolSelector : MonoBehaviour
 
     enum Placements
     {
-        None,
         Placement1,
         Placement2,
         Placement3,
@@ -71,7 +70,7 @@ public class CleaningToolSelector : MonoBehaviour
                 }
             }
 
-            if (cinemachineSwitcher._currentCamera == CinemachineSwitcher.CurrentCamera.Gameplay)
+            if (cinemachineSwitcher._currentCamera == CinemachineSwitcher.CurrentCamera.Gameplay && !cinemachineSwitcher.isBlending)
             {
                 SelectCleaningTool();
             }
@@ -114,13 +113,11 @@ public class CleaningToolSelector : MonoBehaviour
                 break;
         }
 
-        if (_selectedPlacement != null)
-        {
-            currentCleaningTool = currentPlacement.gameObject.transform.GetChild(0);
-            currentCleaningTool.SetParent(mainCleaningTool);
-            currentCleaningTool.localPosition = Vector3.zero;
-            currentCleaningTool.gameObject.layer = LayerMask.NameToLayer("Interactive");
-        }
-        
+        currentCleaningTool = currentPlacement.gameObject.transform.GetChild(0);
+        currentCleaningTool.SetParent(mainCleaningTool);
+        currentCleaningTool.localPosition = Vector3.zero;
+        currentCleaningTool.localRotation = Quaternion.Euler(-90,0,-90);
+        currentCleaningTool.gameObject.layer = LayerMask.NameToLayer("Interactive");
+
     }
 }
