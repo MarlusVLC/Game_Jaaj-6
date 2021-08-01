@@ -30,7 +30,8 @@ namespace ItemInteraction
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.transform.TryGetComponent(out _interactingCleaningTool))
+            _interactingCleaningTool = other.transform.GetComponentInChildren<CleaningTool>();
+            if (_interactingCleaningTool)
             {
                 if (_interactingCleaningTool.CleanerType == _adequateCleaner)
                 {

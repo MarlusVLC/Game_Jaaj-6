@@ -30,7 +30,8 @@ namespace ItemInteraction
             }
 
             isClean = stains.Count < 1;
-            Debug.Log("this dish is now clean!");
+            if (isClean)
+                Debug.Log("this dish is now clean!");
         }
     }
 }
