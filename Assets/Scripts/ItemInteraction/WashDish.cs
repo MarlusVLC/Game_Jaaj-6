@@ -25,20 +25,22 @@ public class WashDish : MonoBehaviour
 	    if (Input.GetKey("space"))
 	    {
 		    currentObject.transform.position = Vector3.MoveTowards(currentObject.transform.position, sinkPosition, washForce * Time.deltaTime);
+		    
 		    if (Vector3.Distance(currentObject.position, sinkPosition) < 0.1f && currentDish.CleanLevel == 1)
 		    {
 			    currentDish.CleanLevel = 2;
-			    Debug.Log("This dish is almost cleansed");
 		    }
 	    }
 	    else
 	    {
 		    currentObject.transform.position = Vector3.MoveTowards(currentObject.transform.position, startingPosition, washForce * Time.deltaTime);
-		    if (Vector3.Distance(currentObject.position, startingPosition) < 0.1f && currentDish.CleanLevel == 2)
+		    if (currentDish.CleanLevel == 2)
 		    {
-			    currentDish.EndCleaning();
-			    currentDish.CleanLevel = 3;
-			    Debug.Log("This dish is FINALLY cleansed");
+			    if (Vector3.Distance(currentObject.position, startingPosition) < 0.1f)
+			    {
+				    currentDish.EndCleaning();
+				    currentDish.CleanLevel = 3;
+			    }
 		    }
 	    }
     }

@@ -25,27 +25,43 @@ namespace ItemInteraction
 
         private void Start()
         {
-            stains = GetComponentsInChildren<Stain>().ToList();
-            stains.ForEach(s => s.OnErase += EliminateStain);
+            SetStains();
         }
 
         private void EliminateStain(Stain stain)
         {
             if (stains.Contains(stain))
             {
+                stain.OnErase -= EliminateStain;
                 stains.Remove(stain);
             }
 
             if (stains.Count < 1)
             {
                 _cleanLevel = 1;
-                Debug.Log("this dish is 2 steps to be cleansed");
             }
+        }
+
+        private void SetStains()
+        {
+            stains = GetComponentsInChildren<Stain>().ToList();
+            stains.ForEach(s => s.OnErase += EliminateStain);
         }
 
         public void EndCleaning()
         {
             OnFullCleaning();
+        }
+
+        public void ResetDirtness()
+        {
+            stains = GetComponentsInChildren<Stain>().ToList();
+            foreach (var stain in stains)
+            {
+                stain.OnErase += EliminateStain;
+                stain.ResetStain();
+            }
+            _cleanLevel = 0;
         }
     }
 }

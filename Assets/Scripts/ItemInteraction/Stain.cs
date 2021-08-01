@@ -1,5 +1,4 @@
 ﻿using System;
-using Code.ScriptableObjects;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -39,7 +38,6 @@ namespace ItemInteraction
                     if (_alphaRemap.y <= -0.9f)
                     {
                         OnErase(this);
-                        Destroy(gameObject);
                     }
                 }
             }
@@ -48,6 +46,12 @@ namespace ItemInteraction
         private void ReduceAlpha()
         {
             _alphaRemap.y -= erasingFactor;
+            _decalMAT.SetVector("_AlphaRemap", _alphaRemap);
+        }
+
+        public void ResetStain()
+        {
+            _alphaRemap.y = 0f;
             _decalMAT.SetVector("_AlphaRemap", _alphaRemap);
         }
     }
