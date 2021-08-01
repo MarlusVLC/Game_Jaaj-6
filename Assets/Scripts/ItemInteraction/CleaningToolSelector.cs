@@ -12,6 +12,7 @@ public class CleaningToolSelector : MonoBehaviour
     [SerializeField] private Transform placement4;
     [SerializeField] private Transform placement5;
     [SerializeField] private Transform placement6;
+    [SerializeField] private CinemachineSwitcher cinemachineSwitcher;
     public Transform mainCleaningTool;
 
     public Transform currentCleaningTool;
@@ -40,7 +41,7 @@ public class CleaningToolSelector : MonoBehaviour
         mainDragRigidbody.HandleInputBegin(Input.mousePosition);
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -69,18 +70,26 @@ public class CleaningToolSelector : MonoBehaviour
                         break;
                 }
             }
-            
-            SelectCleaningTool();
+
+            if (cinemachineSwitcher._currentCamera == CinemachineSwitcher.CurrentCamera.Gameplay)
+            {
+                SelectCleaningTool();
+            }
         }
     }
 
-    void SelectCleaningTool()
+    public void LeaveCleaningTool()
+    {
+        currentCleaningTool.gameObject.layer = 0;
+        currentCleaningTool.SetParent(currentPlacement);
+        currentCleaningTool.localPosition = Vector3.zero;
+    }
+
+    private void SelectCleaningTool()
     {
         if (currentCleaningTool)
         {
-            currentCleaningTool.gameObject.layer = 0;
-            currentCleaningTool.SetParent(currentPlacement);
-            currentCleaningTool.localPosition = Vector3.zero;
+            LeaveCleaningTool();
         }
 
         switch (_selectedPlacement)

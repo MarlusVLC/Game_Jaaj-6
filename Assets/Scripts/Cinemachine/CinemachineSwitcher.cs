@@ -17,17 +17,18 @@ public class CinemachineSwitcher : MonoBehaviour
     [SerializeField] private PlayableAsset doorPivotTimeline;
     [SerializeField] private GameObject doorPivot;
     [SerializeField] private PlayableDirector director;
+    [SerializeField] private CleaningToolSelector cleaningToolSelector;
     private bool isBlending;
 
-    private enum CurrentCamera
+    public enum CurrentCamera
     {
         Menu,
         Gameplay,
         Credits,
         Items
     }
-    
-    CurrentCamera _currentCamera;
+
+    public CurrentCamera _currentCamera;
 
     private void Awake()
     {
@@ -36,7 +37,6 @@ public class CinemachineSwitcher : MonoBehaviour
         itemsButton.onClick.AddListener(ClickItemsButton);
 
         director = doorPivot.GetComponent<PlayableDirector>();
-
     }
 
     private void Update()
@@ -45,6 +45,8 @@ public class CinemachineSwitcher : MonoBehaviour
         
         if (Input.GetAxisRaw("Cancel") != 0 && !isBlending)
         {
+            cleaningToolSelector.LeaveCleaningTool();
+            
             switch (_currentCamera)
             {
                 case CurrentCamera.Gameplay:
