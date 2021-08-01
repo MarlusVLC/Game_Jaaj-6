@@ -25,5 +25,10 @@ namespace DefaultNamespace
         {
             TryGetComponent(out _transform);
         }
+        
+        public void SetActive(bool isActive)
+        {
+            gameObject.SetActive(isActive);
+        }
     }
 }

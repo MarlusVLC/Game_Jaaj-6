@@ -12,9 +12,16 @@ namespace ItemInteraction
         [field: SerializeField] public CleanerType AdequateCleaner { get; private set; }
         [SerializeField] private List<Stain> stains;
 
-        private bool isClean = false;
+        private short _cleanLevel = 0;
+
+        public short CleanLevel
+        {
+            get => _cleanLevel;
+            set => _cleanLevel = value;
+        }
         
-        
+        public event Action OnFullCleaning = delegate {  };
+
 
         private void Start()
         {
@@ -29,9 +36,16 @@ namespace ItemInteraction
                 stains.Remove(stain);
             }
 
-            isClean = stains.Count < 1;
-            if (isClean)
-                Debug.Log("this dish is now clean!");
+            if (stains.Count < 1)
+            {
+                _cleanLevel = 1;
+                Debug.Log("this dish is 2 steps to be cleansed");
+            }
+        }
+
+        public void EndCleaning()
+        {
+            OnFullCleaning();
         }
     }
 }
