@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.Events;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class CinemachineSwitcher : MonoBehaviour
@@ -9,15 +9,21 @@ public class CinemachineSwitcher : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera menuCamera;
     [SerializeField] private CinemachineVirtualCamera gameplayCamera;
     [SerializeField] private Button playButton;
+    [SerializeField] private PlayableAsset doorPivotTimeline;
+    [SerializeField] private GameObject doorPivot;
+    [SerializeField] private PlayableDirector director;
 
-    private void Start()
+    private void Awake()
     {
         playButton.onClick.AddListener(TaskOnClick);
+
+        director = doorPivot.GetComponent<PlayableDirector>();
     }
 
     private void TaskOnClick()
     {
         SwitchPriority();
+        director.Play(doorPivotTimeline);
     }
 
     private void SwitchPriority()
