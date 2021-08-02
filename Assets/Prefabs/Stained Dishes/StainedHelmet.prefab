@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 8618849946156840020}
   - component: {fileID: 4626205936034102257}
   - component: {fileID: 7482557608483442491}
+  - component: {fileID: 4304788727792618976}
   m_Layer: 0
   m_Name: StainedHelmet
   m_TagString: Untagged
@@ -658,6 +659,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4304788727792618976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995833534855966446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ea536f772e45b6bd21a3b5cf975aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AdequateCleaner>k__BackingField: 1
+  stains: []
 --- !u!1 &9133223629776927967
 GameObject:
   m_ObjectHideFlags: 0

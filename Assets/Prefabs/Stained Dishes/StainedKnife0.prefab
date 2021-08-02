@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ea536f772e45b6bd21a3b5cf975aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AdequateCleaner>k__BackingField: 0
+  <AdequateCleaner>k__BackingField: 1
   stains: []
 --- !u!1001 &8639182085137310703
 PrefabInstance:

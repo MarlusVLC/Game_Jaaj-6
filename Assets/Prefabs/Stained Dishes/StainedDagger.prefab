@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1116988656982821709}
   - component: {fileID: 8220274464236422631}
   - component: {fileID: 6138347370789842715}
+  - component: {fileID: -7663117569053018064}
   m_Layer: 0
   m_Name: StainedDagger
   m_TagString: Untagged
@@ -84,6 +85,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7663117569053018064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8777229054681800004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ea536f772e45b6bd21a3b5cf975aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AdequateCleaner>k__BackingField: 1
+  stains: []
 --- !u!1001 &2453446709220495667
 PrefabInstance:
   m_ObjectHideFlags: 0

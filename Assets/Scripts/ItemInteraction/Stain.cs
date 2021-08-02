@@ -27,7 +27,7 @@ namespace ItemInteraction
             _adequateCleaner = GetComponentInParent<Dish>().AdequateCleaner;
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
             _interactingCleaningTool = other.transform.GetComponentInChildren<CleaningTool>();
             if (_interactingCleaningTool)
