@@ -1,0 +1,2 @@
+Lista de bugs:
+	Pegar o primeiro utencílio leva muitos passos.

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2537747025860119983}
   - component: {fileID: 2537747025860119982}
   - component: {fileID: 2537747025860119981}
+  - component: {fileID: -630360688234625412}
   m_Layer: 0
   m_Name: DecalCube_Graffiti
   m_TagString: Untagged
@@ -95,3 +96,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-630360688234625412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537747025860119980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88e86bab41d4b998024f726023003e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  erasingFactor: 0.1
