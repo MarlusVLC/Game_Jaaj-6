@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5623799991554653098}
   - component: {fileID: 332307672588334108}
   m_Layer: 0
-  m_Name: Sword
+  m_Name: FrozenSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +33,7 @@ Transform:
   - {fileID: 1842892006319661909}
   - {fileID: 6486867660829013768}
   - {fileID: 9171132336742292951}
+  - {fileID: 6950260469189355648}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -409,3 +410,77 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1986883178412231199
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5751637534230206486}
+    m_Modifications:
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.042
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.55355287
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.057594426
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7801604
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.28567773
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -149.369
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 285.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -164.744
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953132006551643375, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+      propertyPath: m_Name
+      value: Sword_Ice
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+--- !u!4 &6950260469189355648 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8927993374045987487, guid: ad3987c0b41fe114c997b52724937fa5, type: 3}
+  m_PrefabInstance: {fileID: 1986883178412231199}
+  m_PrefabAsset: {fileID: 0}
