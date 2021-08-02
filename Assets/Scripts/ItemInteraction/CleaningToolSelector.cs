@@ -81,6 +81,7 @@ public class CleaningToolSelector : MonoBehaviour
     {
         currentCleaningTool.gameObject.layer = 0;
         currentCleaningTool.SetParent(currentPlacement);
+        currentCleaningTool.localRotation = Quaternion.Euler(-90,0,-90);
         currentCleaningTool.localPosition = Vector3.zero;
     }
 
@@ -116,7 +117,13 @@ public class CleaningToolSelector : MonoBehaviour
         currentCleaningTool = currentPlacement.gameObject.transform.GetChild(0);
         currentCleaningTool.SetParent(mainCleaningTool);
         currentCleaningTool.localPosition = Vector3.zero;
-        currentCleaningTool.localRotation = Quaternion.Euler(-90,0,-90);
+        if (currentCleaningTool.gameObject.name == "Steel Sponge") {
+            currentCleaningTool.localRotation = Quaternion.Euler(-181,-183,-93); }
+        if (currentCleaningTool.gameObject.name == "Blow Torch") {
+            currentCleaningTool.localRotation = Quaternion.Euler(-90,0,-270); }
+        if (currentCleaningTool.gameObject.name == "Wand") {
+            currentCleaningTool.localRotation = Quaternion.Euler(-20,0,-90); }
+
         currentCleaningTool.gameObject.layer = LayerMask.NameToLayer("Interactive");
 
     }
