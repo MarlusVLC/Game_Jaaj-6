@@ -58,9 +58,7 @@ public class CinemachineSwitcher : MonoBehaviour
                 case CurrentCamera.Items:
                     ItemsToMenu();
                     break;
-                case CurrentCamera.Menu:
-                    Application.Quit();
-                    break;
+                
             }
         }
     }
